@@ -1,11 +1,4 @@
-"""Created originally by Ethan Chiu 10/25/16
-v2.0.0 created on 8/4/18
-Complete redesign for efficiency and scalability
-Uses Python 3 now
 
-v2.1.0 created on 5/10/19
-Improve efficiency and design
- """
 from pylint_errors import pylint_dict_final
 from flask import Flask, render_template, request, jsonify, session
 from flask_socketio import SocketIO
@@ -70,13 +63,11 @@ def check_code():
     # MANAGER.astroid_cache.clear()
     return jsonify(output)
 
-# Run python in secure system
 
 import time
 @app.route('/run_code', methods=['POST'])
 def run_code():
 
-    # Don't run too many times
     if slow():
         return jsonify("Running code too much within a short time period. Please wait a few seconds before clicking \"Run\" each time.")
     session["time_now"] = datetime.now()
